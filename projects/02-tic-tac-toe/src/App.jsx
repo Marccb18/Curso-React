@@ -1,9 +1,9 @@
-import { useState } from "react";
-import confetti from 'canvas-confetti';
+import { useState } from 'react'
+import confetti from 'canvas-confetti'
 
-import { Square } from './components/Square'
+import { Square } from './components/Square.jsx'
 import { TURNS } from './constants.js'
-import { checkWinnerFrom, checkEndGame} from './logic/board.js'
+import { checkWinnerFrom, checkEndGame } from './logic/board.js'
 import { WinnerModal } from './components/WinnerModal.jsx'
 import { saveGameToStorage, resetGameStorage } from './logic/storage/index.js'
 
@@ -31,14 +31,14 @@ function App () {
   }
 
   const updateBoard = (index) => {
-    // no actualizamos esta posicion
+    // no actualizamos esta posición
     // si ya tiene algo
     if (board[index] || winner) return
     // actualizar el tablero
     const newBoard = [...board]
     newBoard[index] = turn
-    setBoard[newBoard]
-    //cambiar el turno
+    setBoard(newBoard)
+    // cambiar el turno
     const newTurn = turn === TURNS.X ? TURNS.O : TURNS.X
     setTurn(newTurn)
     // guardar aqui partida
@@ -57,16 +57,16 @@ function App () {
   }
 
   return (
-    <main className="board">
+    <main className='board'>
       <h1>Tic tac toe</h1>
       <button onClick={resetGame}>Reset del juego</button>
-      <section className="game">
+      <section className='game'>
         {
-          board.map((square,index) => {
+          board.map((square, index) => {
             return (
               <Square
                 key={index}
-                index = {index}
+                index={index}
                 updateBoard={updateBoard}
               >
                 {square}
@@ -76,7 +76,7 @@ function App () {
         }
       </section>
 
-      <section className="turn">
+      <section className='turn'>
         <Square isSelected={turn === TURNS.X}>
           {TURNS.X}
         </Square>
